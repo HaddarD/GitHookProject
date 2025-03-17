@@ -1,0 +1,10 @@
+#!/bin/bash
+
+echo "🔍 Running system health check after merge..."
+echo "📦 Disk Usage:"
+df -h
+echo "🧠 Memory Usage:"
+free -m
+echo "🛠️ Running Services:"
+systemctl list-units --type=service --state=running | head -15
+echo "✅ Post-merge check completed!"

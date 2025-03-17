@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Prevent committing log/tmp files
+if git diff --cached --name-only | grep -E '(\.log|\.tmp)$'; then
+  echo "❌ ERROR: Log or tmp files detected. Remove them before committing."
+  exit 1
+fi
+
+# Prevent committing debug comments
+if git diff --cached | grep -E '# DE BUG:'; then
+  echo "❌ ERROR: Debug comments (# DE BUG:) detected in scripts."
+  exit 1
+fi
+
+echo "✅ Pre-commit checks passed!"

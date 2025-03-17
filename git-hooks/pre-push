@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Find files larger than 1MB in the repo
+LARGE_FILES=$(find . -type f -size +1M ! -path "./.git/*")
+
+if [[ -n "$LARGE_FILES" ]]; then
+  echo "❌ ERROR: The following files exceed 1MB and cannot be pushed:"
+  echo "$LARGE_FILES"
+  exit 1
+fi
+
+echo "✅ Pre-push checks passed!"

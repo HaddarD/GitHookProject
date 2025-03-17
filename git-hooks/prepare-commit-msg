@@ -1,0 +1,9 @@
+#!/bin/bash
+
+USERNAME=$(whoami)
+PREFIX="[$USERNAME]"
+
+# Only modify non-empty commit messages
+if [[ -s "$1" ]]; then
+  sed -i "1s/^/$PREFIX /" "$1"
+fi
